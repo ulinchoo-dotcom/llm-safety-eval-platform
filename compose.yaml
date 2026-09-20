@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: safety
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-safety_local_dev}
+      POSTGRES_DB: safety_eval
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - safety_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U safety -d safety_eval"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+volumes:
+  safety_pg:
