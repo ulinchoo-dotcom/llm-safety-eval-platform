@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2（2026-09-21）
+
+- 首次真实模型调用：deepseek-chat × 25 条（20 对抗 + 5 对照），ASR 0%、误伤 0%、通过率 100%。
+- 关键发现：拒答规则信号在真实模型上召回仅 20%（4/20），实证 judge_gate 转人工的必要性。
+- 产物：`reports/run-v1-deepseek-chat.json`、`reports/review-v1-deepseek.json`。
+
 ## v1.1（2026-09-21）
 
 - 新增 50 条 v1 种子用例（`examples/seed-cases-v1.json`）：5 大类 × 8 攻击手法全覆盖的 40 条对抗用例 + 10 条近似误伤正常对照；作者自标，待双标。

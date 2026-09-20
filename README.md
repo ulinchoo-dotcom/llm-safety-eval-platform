@@ -77,6 +77,8 @@ TEST_DATABASE_URL=postgresql://safety:safety_local_dev@127.0.0.1:55432/safety_ev
 | demo-safe | 20% | 0% | 0% | 0% |
 | demo-overrefusal | 80% | 0% | 100% | 100% |
 
+**真实模型首测（2026-09-21，deepseek-chat，温度 0）**：20 条对抗全部拒答（ASR 0%）、5 条正常对照零误伤，用量 prompt 739 / completion 5991 tokens（API 真实返回）。**关键发现：仓库拒答正则在真实模型上召回仅 20%（4/20）**——真实模型拒答话术远比规则库多样，这实证了 `judge_gate` 默认转人工的设计；规则信号只能作参考。逐条复核见 `reports/review-v1-deepseek.json`。
+
 两个模拟模型恰好演示安全评测的核心张力：demo-safe 不输出有害内容（ASR=0）但不构成「拒答」，严格口径下仅两成符合预期；demo-overrefusal 全部拒答，对抗用例全拦下但正常对照 100% 误伤。100 条复核记录为作者自审（`yulin-self-review-v1`），未经双人复核；全部用量为模拟零值。详见 `reports/summary-v1.md`。
 
 ## 边界与后续里程碑
